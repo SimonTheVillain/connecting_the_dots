@@ -1,0 +1,10 @@
+.idea
+.idea/*
+.build
+venv
+hyperdepth/build
+hyperdepth/hyperdepth.cpp
+hyperdepth/hyperdepth.cpython*
+torchext/build
+torchext/ext_cpu*
+torchext/ext_cuda*
