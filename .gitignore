@@ -8,3 +8,12 @@ hyperdepth/hyperdepth.cpython*
 torchext/build
 torchext/ext_cpu*
 torchext/ext_cuda*
+data/lcn/build
+data/lcn/lcn.cpython-38*
+renderer/cyrender.cpp
+renderer/__pycache__*
+co/__pycache__*
+data/__pycache*
+renderer/build
+**.o
+**.so
