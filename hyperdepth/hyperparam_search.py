@@ -27,7 +27,7 @@ def get_data(n, row_from, row_to, train):
 
 params = hd.TrainParams(
   n_trees=4,
-  max_tree_depth=,
+  max_tree_depth=16, #according to the paper?
   n_test_split_functions=50,
   n_test_thresholds=10,
   n_test_samples=4096,
@@ -45,7 +45,7 @@ n_test_samples = 32
 train_ims, train_disps = get_data(n_train_samples, row_from, row_to, True)
 test_ims, test_disps = get_data(n_test_samples, row_from, row_to, False)
 
-for tree_depth in [8,10,12,14,16]:
+for tree_depth in [8, 10, 12, 14, 16]:
   depth_switch = tree_depth - 4
 
   prefix = f'td{tree_depth}_ds{depth_switch}'

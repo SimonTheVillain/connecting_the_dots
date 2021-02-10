@@ -368,6 +368,7 @@ class RectifiedPatternSimilarityLoss(TimedModule):
     uv1[..., 1] = 2 * (uv1[..., 1] / (self.im_height-1) - 0.5)
     uv1 = uv1.view(-1, self.im_height, self.im_width, 2).clone()
     pattern = self.pattern.expand(disp0.shape[0], *self.pattern.shape[1:])
+    #(simon) todo: check if the align_corners option here is used as desired. (default: align_corners = false)
     pattern_proj = torch.nn.functional.grid_sample(pattern, uv1, padding_mode='border')
     mask = torch.ones_like(im)
     if std is not None:

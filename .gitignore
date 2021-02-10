@@ -15,5 +15,8 @@ renderer/__pycache__*
 co/__pycache__*
 data/__pycache*
 renderer/build
+output
 **.o
 **.so
+model/__pycache__
+torchext/__pycache__
