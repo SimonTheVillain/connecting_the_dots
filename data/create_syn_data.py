@@ -206,6 +206,15 @@ def create_data(out_root, idx, n_samples, imsize, patterns, K, baseline, blend_i
 
 if __name__=='__main__':
 
+  #todo: delete from here!
+  # small check! seemingly the "get_pattern" method crops the 1280x1024 to 640x480... BAD!!!!!
+  imsize = (480, 640)
+  imsizes = [(imsize[0]//(2**s), imsize[1]//(2**s)) for s in range(4)]
+  pattern_path = './kinect_pattern.png'
+  pattern_crop = True
+  patterns = get_patterns(pattern_path, imsizes, pattern_crop)
+  # to here
+
   np.random.seed(42)
   
   # output directory

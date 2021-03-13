@@ -176,7 +176,7 @@ public:
   Raw(const T* raw, int nsamples, int rows, int cols)
     : raw(raw), nsamples(nsamples), rows(rows), cols(cols) {}
 
-  T operator()(int n, int r, int c) const {
+  T operator()(int n, int r, int c) const {//n... sample number
     return raw[(n * rows + r) * cols + c];
   }
 };
@@ -187,10 +187,10 @@ public:
   RawSample(const Raw<uint8_t>& raw, int n, int rc, int cc, int patch_height, int patch_width)
     : Sample(1, patch_height, patch_width), raw(raw), n(n), rc(rc), cc(cc) {}
 
-  virtual float at(int ch, int r, int c) const {
+  virtual float at(int ch, int r, int c) const { //channel row column
     r += rc - height_ / 2;
     c += cc - width_ / 2;
-    r = std::max(0, std::min(raw.rows-1, r));
+    r = std::max(0, std::min(raw.rows-1, r)); // clamp
     c = std::max(0, std::min(raw.cols-1, c));
     return raw(n, r, c);
   }
@@ -210,7 +210,7 @@ void extract_row_samples(const Raw<uint8_t>& im, const Raw<float>& disp, int row
       int cl = pos * n_disp_bins;
       if((d < 0 || cl < 0) && only_valid) continue;
 
-      auto sample = std::make_shared<RawSample>(im, n, row, col, 32, 32);
+      auto sample = std::make_shared<RawSample>(im, n, row, col, 32, 32); //patches are 32 pixel high etc.
       auto target = std::make_shared<ClassificationTarget>(cl);
       auto datum = TrainDatum(sample, target);
       data.push_back(datum);

@@ -5,6 +5,7 @@ venv
 hyperdepth/build
 hyperdepth/hyperdepth.cpp
 hyperdepth/hyperdepth.cpython*
+hyperdepth/forests
 torchext/build
 torchext/ext_cpu*
 torchext/ext_cuda*
@@ -20,3 +21,4 @@ output
 **.so
 model/__pycache__
 torchext/__pycache__
+

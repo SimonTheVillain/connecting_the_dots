@@ -72,7 +72,7 @@ public:
   }
   
   virtual void Save(SerializationOut& ar) const {
-    SplitFunction::Save(ar);
+    SplitFunction::Save(ar); //simon: call Save from superclass
     ar << c0_;
     ar << c1_;
     ar << h0_;
@@ -82,8 +82,7 @@ public:
   }
   
   virtual void Load(SerializationIn& ar) {
-    SplitFunction::Load(ar);
-
+    SplitFunction::Load(ar); //simon: call Load from superclass
     ar >> c0_;
     ar >> c1_;
     ar >> h0_;
@@ -93,6 +92,7 @@ public:
   }
   
 private:
+    //SIMON: channel/height/width... for the case we would have RGB images!?
   int c0_;
   int c1_;
   int h0_;

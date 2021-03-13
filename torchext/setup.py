@@ -7,11 +7,12 @@ this_dir = os.path.dirname(os.path.realpath(__file__))
 include_dirs = [
 ]
 
-nvcc_args = [
-  '-arch=sm_30',
-  '-gencode=arch=compute_30,code=sm_30',
-  '-gencode=arch=compute_35,code=sm_35',
-]
+#nvcc_args = [
+#  '-arch=sm_30',
+#  '-gencode=arch=compute_30,code=sm_30',
+#  '-gencode=arch=compute_35,code=sm_35',
+#]
+nvcc_args = []
 
 setup(
   name='ext',
