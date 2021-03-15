@@ -12,6 +12,14 @@ import torchext
 from model import networks
 from data import dataset
 
+import matplotlib
+print(matplotlib.rcsetup.interactive_bk)
+print(matplotlib.rcsetup.non_interactive_bk)
+print(matplotlib.get_backend())
+matplotlib.use('Agg')
+print(matplotlib.get_backend())
+
+
 class Worker(torchext.Worker):
   def __init__(self, args, num_workers=18, train_batch_size=8, test_batch_size=8, save_frequency=1, **kwargs):
     super().__init__(args.output_dir, args.exp_name, epochs=args.epochs, num_workers=num_workers, train_batch_size=train_batch_size, test_batch_size=test_batch_size, save_frequency=save_frequency, **kwargs)
