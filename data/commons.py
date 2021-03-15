@@ -19,9 +19,12 @@ def get_patterns(path='syn', imsizes=[], crop=True):
     pattern = np.stack([pattern for idx in range(3)], axis=2)
   
   if crop and pattern.shape[0] > pattern_size[0] and pattern.shape[1] > pattern_size[1]:
+    #r0 = (pattern.shape[0] - 960) // 2
+    #c0 = (pattern.shape[1] - 1280) // 2
+    #pattern = pattern[r0:r0 + 960, c0:c0 + 1280]
     r0 = (pattern.shape[0] - pattern_size[0]) // 2
     c0 = (pattern.shape[1] - pattern_size[1]) // 2
-    pattern = pattern[r0:r0+imsizes[0][0], c0:c0+imsizes[0][1]] 
+    pattern = pattern[r0:r0+imsizes[0][0], c0:c0+imsizes[0][1]]
     
   patterns = []
   for imsize in imsizes:

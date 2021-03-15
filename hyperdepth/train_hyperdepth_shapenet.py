@@ -10,7 +10,7 @@ import hyperdepth as hd
 sys.path.append('../')
 import simon.dataset
 
-dataset_path = os.path.expanduser("~/datasets/shapenet_rendered/syn")
+dataset_path = os.path.expanduser("~/datasets/shapenet_rendered")
 
 def get_data(n, row_from, row_to, train):
   imsizes = [(480, 640)]
@@ -53,7 +53,7 @@ train_ims, train_disps = get_data(n_train_samples, row_from, row_to, True)
 test_ims, test_disps = get_data(n_test_samples, row_from, row_to, False)
 
 for tree_depth in [8]:#, 10, 12, 14, 16]: # probably best results are
-  depth_switch = tree_depth - 4
+  depth_switch = tree_depth - 4 # todo: according to the supplementary it should be tree_depth - 6!!!!!!
 
   prefix = f'td{tree_depth}_ds{depth_switch}'
   prefix = Path(f'./forests/{prefix}/')

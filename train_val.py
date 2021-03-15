@@ -11,9 +11,9 @@ args = parse_args()
 
 # loss types
 if args.loss=='ph':
-  worker = exp_synph.Worker(args)
+  worker = exp_synph.Worker(args, num_workers=8)
 elif args.loss=='phge':
-  worker = exp_synphge.Worker(args)
+  worker = exp_synphge.Worker(args, num_workers=8)
 
 # concatenation of original image and lcn image
 channels_in=2 

@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 import numpy as np
 import torch.utils.data as data
 import random
@@ -23,33 +24,29 @@ class ShuffledDataset(data.Dataset):
                 list.append((line_split[0], line_split[1]))
         return list
 
-    def __init__(self, path, n, train):
+    def __init__(self, data_root, n, train):
         phase = "test"
         if train:
             phase = "test"
+        self.data_type = "syn"
 
-        if not os.path.isfile(f"{path}/files_{phase}.txt"):
-            scenes = os.listdir(path)
-            self.files = []
-            for scene in scenes:
-                scene_path = f"{path}/{scene}"
-                if not os.path.isdir(scene_path):
-                    continue
+        sample_paths = sorted((Path(data_root) / self.data_type).glob('0*/'))
 
-                for i in range(0, 1):#lets only 640 by 480 images trough
-                    for j in range(0, 4):
-                        self.files.append((f"{scene_path}/im{i}_{j}.npy", f"{scene_path}/disp{i}_{j}.npy"))
-            random.shuffle(self.files)
-            #todo: split these phases by scene!
-            file_list_train = self.files[0:int((len(self.files) * 9) / 10)]
-            file_list_test = self.files[int((len(self.files) * 9) / 10):]
-            self.store_list(f"{path}/file_train.txt", file_list_train)
-            self.store_list(f"{path}/file_test.txt", file_list_test)
+        train_paths = sample_paths[2 ** 10:]# the trailing 8192 scene
+        test_paths = sample_paths[:2 ** 8] # the first 256 scenes
 
-        self.files = self.load_list(f"{path}/file_{phase}.txt")
-        if len(self.files) < n:
-            print("too few images!")
-        self.files = self.files[0:n]
+        if train:
+            paths = train_paths
+        else:
+            paths = test_paths
+
+        self.files = []
+        for scene_path in paths:
+            for i in range(0, 1):#lets only 640 by 480 images trough
+                for j in range(0, 4):
+                    self.files.append((f"{scene_path}/im{i}_{j}.npy", f"{scene_path}/disp{i}_{j}.npy"))
+        random.shuffle(self.files)
+
 
     def __len__(self):
         return len(self.files)
@@ -57,6 +54,7 @@ class ShuffledDataset(data.Dataset):
     def __getitem__(self, idx):
         im = np.load(self.files[idx][0])
         disp = np.load(self.files[idx][1])
+        #todo: augment the data!!!!!
         return {"im0": im, "disp0": disp}
 
 
