@@ -1,3 +1,5 @@
+import os
+os.environ["CUDA_VISIBLE_DEVICES"] = "1"#todo: remove
 import numpy as np
 import matplotlib.pyplot as plt
 import itertools
@@ -7,7 +9,6 @@ import multiprocessing
 import time
 import json
 import cv2
-import os
 import collections
 import sys
 sys.path.append('../')

@@ -1,5 +1,5 @@
 {
   "CUDA_LIBRARY_DIR": "/usr/local/cuda/lib64",
-  "DATA_ROOT": "/home/simon/datasets/shapenet_rendered",
-  "SHAPENET_ROOT": "/home/simon/datasets/ShapeNetCore.v2"
+  "DATA_ROOT": "/media/simon/ssd_data/data/datasets/shapenet_rendered",
+  "SHAPENET_ROOT": "/media/simon/data/ShapeNetCore.v2"
 }
